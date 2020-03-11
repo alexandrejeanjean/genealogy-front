@@ -1,0 +1,24 @@
+.dna-logo {
+    width: 2.5em;
+    /* transform: rotate(45deg); */
+    margin-right: .5em;
+}
+
+p, h1, h2, h3, h4, h5, h6, span, ul, li, input, a, button, label {
+    font-family: 'Baloo 2', cursive;
+    color: #585858
+}
+
+h1, h2, .main-color {
+    color: #348fd9
+}
+
+.bold {
+    font-weight: 600;
+}
+
+button {
+    min-width: 8em;
+    background-color: #348fd9 !important;
+    border: none !important;
+}
