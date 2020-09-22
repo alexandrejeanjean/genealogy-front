@@ -4,17 +4,38 @@
     margin-right: .5em;
 }
 
-p, h1, h2, h3, h4, h5, h6, span, ul, li, input, a, button, label {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+ul,
+li,
+input,
+a,
+button,
+label {
     font-family: 'Baloo 2', cursive;
     color: #585858
 }
 
-h1, h2, .main-color {
+h1,
+h2,
+.main-color {
     color: #348fd9
 }
 
 .bold {
     font-weight: 600;
+}
+
+.error-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: red
 }
 
 button {
