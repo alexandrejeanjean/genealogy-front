@@ -1,9 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Routes from '../Routes';
-import UserProvider from '../store/UserProvider';
-
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from '../Routes'
+import UserProvider from '../store/UserProvider'
+import './App.scss'
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
         <Routes />
       </Router>
     </UserProvider>
-  );
+  )
 }
 
-export default App;
+export default App

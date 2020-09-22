@@ -1,12 +1,12 @@
 import React from 'react'
 import Main from '../Theme/index'
 
-function Dashboard() {
+function Family() {
   return (
     <Main>
-      <h1>Dashboard</h1>
+      <h1>Family</h1>
     </Main>
   )
 }
 
-export default Dashboard
+export default Family
