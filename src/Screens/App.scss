@@ -1,9 +1,3 @@
-.dna-logo {
-  width: 2.5em;
-  /* transform: rotate(45deg); */
-  margin-right: 0.5em;
-}
-
 p,
 h1,
 h2,
@@ -54,13 +48,15 @@ h2,
 }
 
 button {
+  border: none;
+}
+
+.btn-primary {
   min-width: 8em;
-  background-color: #348fd9;
-  border: none !important;
+  background: #348fd9;
   color: white;
 }
 
-.classic-btn,
 .navbar-toggler,
 .card {
   font-size: 1.2rem;

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import dna from '../../assets/dna.svg'
+import tree from '../../assets/tree.svg'
+
+import './loginForm.scss'
 
 type Props = {
   handleSubmit: Function
@@ -37,12 +39,20 @@ class LoginForm extends PureComponent<Props, State> {
   render() {
     const { errorMsg } = this.props
     return (
-      <Container>
-        <Row className='d-flex justify-content-center align-items-center vh-100'>
-          <Col xs={4}>
-            <div className='d-flex mb-4'>
-              <img src={dna} alt='genealogy-logo' className='dna-logo' />
-              <h1>Genealogy</h1>
+      <Container fluid className='login-wrapper'>
+        <Row className='vh-100'>
+          <Col
+            xs={12}
+            sm={12}
+            md={4}
+            className='left d-flex flex-column justify-content-center align-items-center'
+          >
+            <div className='left-mobile-title-wrapper mb-4'>
+              <img src={tree} alt='genealogy-logo' className='dna-logo' />
+              <h1>Family tree</h1>
+            </div>
+            <div className='left-desktop-title-wrapper mb-4'>
+              <h1>Connexion</h1>
             </div>
             <Form onSubmit={this._handleSubmit}>
               <Form.Group controlId='formBasicUsername'>
@@ -68,11 +78,18 @@ class LoginForm extends PureComponent<Props, State> {
                 />
               </Form.Group>
 
-              <Button variant='primary' type='submit' className='mt-3'>
+              <Button type='submit' className='btn-primary mt-3'>
                 Sign in
               </Button>
             </Form>
             {errorMsg && <p className='error-text'>{errorMsg}</p>}
+          </Col>
+          <Col md={8} className='right-desktop-title-wrapper'>
+            <img src={tree} alt='' className='right-desktop-logo' />
+            <h2>Welcome to Family Tree</h2>
+            <h3>
+              Start your journey now <br /> & build an amazing tree of life
+            </h3>
           </Col>
         </Row>
       </Container>

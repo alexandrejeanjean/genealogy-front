@@ -1,0 +1,97 @@
+.login-wrapper {
+  margin: 0;
+  background-color: #fff;
+
+  .left {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    .left-mobile-title-wrapper {
+      display: none;
+    }
+
+    .left-desktop-title-wrapper {
+      h1 {
+        font-weight: bolder;
+        text-align: left;
+      }
+    }
+  }
+
+  .right-desktop-title-wrapper {
+    background: #4ca1af;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .right-desktop-logo {
+      width: 50%;
+    }
+    h2 {
+      font-size: 3rem;
+      color: #fff;
+      font-weight: bolder;
+      margin-top: 20px;
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 1.4rem;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .login-wrapper {
+    background: #4ca1af;
+    .left {
+      label,
+      p {
+        color: #fff;
+      }
+
+      .left-desktop-title-wrapper {
+        display: none;
+      }
+
+      .left-mobile-title-wrapper {
+        display: block;
+        width: 200px;
+        .dna-logo {
+          width: 160px;
+          margin: auto;
+          margin-bottom: 20px;
+        }
+        h1 {
+          color: #fff;
+          font-size: 2.4rem;
+          font-weight: bolder;
+        }
+      }
+    }
+
+    .right-desktop-title-wrapper {
+      display: none !important;
+    }
+  }
+}
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  .login-wrapper {
+    background: #4ca1af;
+
+    .left {
+      .left-desktop-title-wrapper {
+        display: none;
+      }
+      .left-mobile-title-wrapper {
+        display: block;
+      }
+    }
+
+    .right-desktop-title-wrapper {
+      display: none !important;
+    }
+  }
+}

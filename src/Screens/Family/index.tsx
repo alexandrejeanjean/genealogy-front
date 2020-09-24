@@ -98,7 +98,7 @@ function Family({ location }: any) {
 
   return (
     <Main pageTitle='Family'>
-      <button className='back-btn' onClick={() => history.goBack()}>
+      <button className='btn-primary back-btn' onClick={() => history.goBack()}>
         {`< Back`}
       </button>
       {renderGenerations()}
