@@ -11,14 +11,14 @@
 
     .left-desktop-title-wrapper {
       h1 {
-        font-weight: bolder;
         text-align: left;
       }
     }
   }
 
   .right-desktop-title-wrapper {
-    background: #4ca1af;
+    background-color: #89c2d9;
+    background: linear-gradient(259.07deg, #daf8ff 4.07%, #b2eaf8);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,13 +29,13 @@
     }
     h2 {
       font-size: 3rem;
-      color: #fff;
-      font-weight: bolder;
+      color: #348fd9;
+
       margin-top: 20px;
     }
 
     h3 {
-      color: #fff;
+      color: #585858;
       font-size: 1.4rem;
       text-align: center;
       line-height: 30px;
@@ -45,13 +45,9 @@
 
 @media only screen and (max-width: 767px) {
   .login-wrapper {
-    background: #4ca1af;
+    background-color: #89c2d9;
+    background: linear-gradient(259.07deg, #daf8ff 4.07%, #b2eaf8);
     .left {
-      label,
-      p {
-        color: #fff;
-      }
-
       .left-desktop-title-wrapper {
         display: none;
       }
@@ -65,9 +61,8 @@
           margin-bottom: 20px;
         }
         h1 {
-          color: #fff;
+          color: #348fd9;
           font-size: 2.4rem;
-          font-weight: bolder;
         }
       }
     }
@@ -79,7 +74,8 @@
 }
 @media only screen and (max-width: 767px) and (orientation: portrait) {
   .login-wrapper {
-    background: #4ca1af;
+    background-color: #89c2d9;
+    background: linear-gradient(259.07deg, #daf8ff 4.07%, #b2eaf8);
 
     .left {
       .left-desktop-title-wrapper {

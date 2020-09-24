@@ -19,7 +19,7 @@ function Login({ isLogged, setIsLogged }: Props) {
   const autoSignIn = async () => {
     try {
       const token = LocalStorageService._getAccessToken()
-      console.log('user :: ', token)
+
       if (token) {
         setAuthorization(token)
         setIsLogged(true)
@@ -43,7 +43,7 @@ function Login({ isLogged, setIsLogged }: Props) {
       const response = await apiClient.post('/signin', credentials)
       console.log('response', response)
       const user = response.data
-      console.log('user :: ', user)
+
       if (user.token) {
         setAuthorization(user.token)
         setIsLogged(true)

@@ -7,7 +7,7 @@ import { withUser } from '../../store/UserProvider'
 import LocalStorageService from '../../services/LocalStorageService'
 
 import './navbar.scss'
-import dna from '../../assets/dna.svg'
+import tree from '../../assets/tree.svg'
 
 type Props = {
   isLogged: boolean
@@ -39,14 +39,14 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
       variant='light'
     >
       <Navbar.Brand href='#home'>
-        <img src={dna} alt='genealogy-logo' className='dna-logo-navbar' />
-        <span className='ml-2 main-color bold'>Genealogy</span>
+        <img src={tree} alt='genealogy-logo' className='dna-logo-navbar' />
+        <span className='ml-2 main-color bold'>Family tree</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
         <Nav className='ml-auto mr-5'>
           <Nav.Link eventKey={2} as={Link} to='/dashboard' className='bold'>
-            Life tree
+            My tree
           </Nav.Link>
           {/* <NavDropdown
             title='Actions'

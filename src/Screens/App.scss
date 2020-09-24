@@ -23,8 +23,10 @@ li {
 
 h1,
 h2,
+h3,
 .main-color {
   color: #348fd9;
+  font-weight: bolder;
 }
 
 .title-wrapper {
@@ -51,6 +53,10 @@ button {
   border: none;
 }
 
+label {
+  font-weight: bolder;
+}
+
 .btn-primary {
   min-width: 8em;
   background: #348fd9;
@@ -58,7 +64,8 @@ button {
 }
 
 .navbar-toggler,
-.card {
+.card,
+.new-item-btn {
   font-size: 1.2rem;
   line-height: 35px;
   background-color: #89c2d9;
