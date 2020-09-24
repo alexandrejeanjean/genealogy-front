@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import apiClient from '../../api'
+import apiClient, { setAuthorization } from '../../api'
 import { withUser } from '../../store/UserProvider'
-
 import LocalStorageService from '../../services/LocalStorageService'
 
 import LoginForm from './LoginForm'
@@ -22,6 +21,7 @@ function Login({ isLogged, setIsLogged }: Props) {
       const token = LocalStorageService._getAccessToken()
       console.log('user :: ', token)
       if (token) {
+        setAuthorization(token)
         setIsLogged(true)
         history.push('/dashboard')
       }
@@ -45,6 +45,7 @@ function Login({ isLogged, setIsLogged }: Props) {
       const user = response.data
       console.log('user :: ', user)
       if (user.token) {
+        setAuthorization(user.token)
         setIsLogged(true)
         LocalStorageService._setToken(user)
         return history.push('/dashboard')

@@ -1,11 +1,12 @@
 import React from 'react'
-import { Navbar, NavDropdown, Nav } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
+import { setAuthorization } from '../../api'
 import { withUser } from '../../store/UserProvider'
 
 import LocalStorageService from '../../services/LocalStorageService'
 
-import './navbar.css'
+import './navbar.scss'
 import dna from '../../assets/dna.svg'
 
 type Props = {
@@ -19,6 +20,7 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
   const logout = async () => {
     try {
       LocalStorageService._clearToken()
+      setAuthorization(null)
       setIsLogged(false)
       history.push('/')
     } catch (err) {
@@ -29,7 +31,13 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
   }
 
   return isLogged ? (
-    <Navbar collapseOnSelect expand='lg' bg='white' variant='light'>
+    <Navbar
+      className='navbar'
+      collapseOnSelect
+      expand='lg'
+      bg='white'
+      variant='light'
+    >
       <Navbar.Brand href='#home'>
         <img src={dna} alt='genealogy-logo' className='dna-logo-navbar' />
         <span className='ml-2 main-color bold'>Genealogy</span>
@@ -40,7 +48,7 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
           <Nav.Link eventKey={2} as={Link} to='/dashboard' className='bold'>
             Life tree
           </Nav.Link>
-          <NavDropdown
+          {/* <NavDropdown
             title='Actions'
             id='collasible-nav-dropdown'
             className='bold'
@@ -53,7 +61,16 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
+          <Nav.Link
+            eventKey={2}
+            as={Link}
+            to='/'
+            onClick={logout}
+            className='bold'
+          >
+            Logout
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
