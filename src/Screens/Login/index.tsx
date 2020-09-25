@@ -7,15 +7,16 @@ import LocalStorageService from '../../services/LocalStorageService'
 import LoginForm from './LoginForm'
 import Main from '../Theme/index'
 
-type Props = {
+type TLogin = {
   setIsLogged: Function
   isLogged: boolean
 }
 
-function Login({ isLogged, setIsLogged }: Props) {
+const Login = ({ isLogged, setIsLogged }: TLogin) => {
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
 
+  // Sign user if token already stored in local storage
   const autoSignIn = async () => {
     try {
       const token = LocalStorageService._getAccessToken()
@@ -38,6 +39,7 @@ function Login({ isLogged, setIsLogged }: Props) {
     }
   })
 
+  // Post user credentials,  store authorization token in local storage, set context user to logged in
   const signIn = async (credentials: object) => {
     try {
       const response = await apiClient.post('/signin', credentials)

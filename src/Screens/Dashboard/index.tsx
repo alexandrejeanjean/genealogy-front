@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom'
 import Main from '../Theme/index'
 import apiClient from '../../api'
 import ListWrapper from '../../SharedComponents/ListWrapper/ListWrapper'
-import FamilyForm from './FamilyForm'
+import CreateItemBtn from '../../SharedComponents/CreateItemBtn/CreateItemBtn'
+import ModalForm from '../../SharedComponents/ModalForm/ModalForm'
 import './dashboard.scss'
 
 type TFamily = {
@@ -14,18 +15,17 @@ type TFamily = {
 
 type TGetFamilies = TFamily[]
 
-function Dashboard() {
+const Dashboard = () => {
   const [list, setList] = useState<TGetFamilies>([])
   const [modalShow, setModalShow] = useState<boolean>(false)
   const [errorMsg, setErrorMsg] = useState('')
   const history = useHistory()
 
+  // Get family datas ---------------------------------------
   const getFamilies = async () => {
     try {
       const response = await apiClient.get('/families')
-      console.log('response', response)
       const families = response.data
-      console.log('families :: ', families)
       if (families) {
         setList(families)
       }
@@ -40,32 +40,15 @@ function Dashboard() {
     }
   }
 
+  // Get datas on component did mount --------------------------
   useEffect(() => {
     getFamilies()
   }, [])
 
-  const deleteFamily = async (family: TFamily) => {
-    const familyId: number = family.id
-    try {
-      const response = await apiClient.delete(`/families/${familyId}`)
-      console.log('removed :: ', response)
-      if (response) getFamilies()
-    } catch (err) {
-      if (err && err.response) {
-        const axiosError = err
-        console.log('Error :: delete family', axiosError.response)
-        return axiosError.response.data
-      }
-      throw err
-    }
-  }
-
+  // Add family  ---------------------------------------
   const createFamily = async (family: { name: string }) => {
-    console.log('family :: ', family)
-
     try {
       const response = await apiClient.post(`/families`, { name: family.name })
-      console.log('create family :: ', response)
       if (response) getFamilies()
     } catch (err) {
       if (err && err.response) {
@@ -74,6 +57,22 @@ function Dashboard() {
         setErrorMsg(
           'Sorry, an error occured. Please try again or contact us if problem persists.'
         )
+        return axiosError.response.data
+      }
+      throw err
+    }
+  }
+
+  // Delete family  ---------------------------------------
+  const deleteFamily = async (family: TFamily) => {
+    const familyId: number = family.id
+    try {
+      const response = await apiClient.delete(`/families/${familyId}`)
+      if (response) getFamilies()
+    } catch (err) {
+      if (err && err.response) {
+        const axiosError = err
+        console.log('Error :: delete family', axiosError.response)
         return axiosError.response.data
       }
       throw err
@@ -94,15 +93,14 @@ function Dashboard() {
           datas={list}
           handleClick={(familyId: number) => goTo(familyId)}
           handleDelete={(family: TFamily) => deleteFamily(family)}
-        />
-        <Container fluid>
-          <button className='new-item-btn' onClick={() => setModalShow(true)}>
-            New
-          </button>
-        </Container>
+        >
+          <CreateItemBtn handleClick={() => setModalShow(true)} />
+        </ListWrapper>
 
-        <FamilyForm
+        <ModalForm
+          title='Family'
           show={modalShow}
+          inputs={[{ name: 'name', placeholder: 'Ex: Armstrong' }]}
           onHide={() => setModalShow(false)}
           handleSubmit={createFamily}
           errorMsg={errorMsg}

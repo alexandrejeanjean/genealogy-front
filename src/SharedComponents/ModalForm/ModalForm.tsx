@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react'
 import { Form, Button, Modal } from 'react-bootstrap'
 
+type TInputs = { name: string; placeholder: string }
+
 type Props = {
+  title: string
+  inputs: TInputs[]
   handleSubmit: Function
   errorMsg: string
   show: boolean
@@ -10,14 +14,20 @@ type Props = {
 
 interface State {
   name: string
+  firstname: string
+  lastname: string
+  position: number | null
 }
 
-class FamilyForm extends PureComponent<Props, State> {
+class ModalForm extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props)
 
     this.state = {
       name: '',
+      position: null,
+      firstname: '',
+      lastname: '',
     }
   }
 
@@ -36,7 +46,7 @@ class FamilyForm extends PureComponent<Props, State> {
   }
 
   render() {
-    const { errorMsg, ...props } = this.props
+    const { errorMsg, title, inputs, ...props } = this.props
     return (
       <Modal
         size='lg'
@@ -46,22 +56,27 @@ class FamilyForm extends PureComponent<Props, State> {
       >
         <Modal.Header closeButton>
           <Modal.Title id='contained-modal-title-vcenter'>
-            New family
+            New {title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={this._handleSubmit}>
-            <Form.Group controlId='familyName'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='text'
-                name='name'
-                placeholder='Enter family name'
-                onChange={this.handleChange}
-              />
-            </Form.Group>
+            {inputs.map((input: TInputs) => (
+              <Form.Group controlId='familyName' key={input.placeholder}>
+                <Form.Label>
+                  {input.name.charAt(0).toUpperCase() + input.name.substr(1)}
+                </Form.Label>
+                <Form.Control
+                  type='text'
+                  name={input.name}
+                  placeholder={input.placeholder}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+            ))}
+
             <Button type='submit' className='btn-primary mt-3'>
-              Create family
+              Create {title}
             </Button>
           </Form>
           {errorMsg && <p className='error-text'>{errorMsg}</p>}
@@ -71,4 +86,4 @@ class FamilyForm extends PureComponent<Props, State> {
   }
 }
 
-export default FamilyForm
+export default ModalForm

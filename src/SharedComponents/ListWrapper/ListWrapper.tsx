@@ -5,11 +5,17 @@ import './listWrapper.scss'
 
 type TListWrapper = {
   datas: any
+  children?: any
   handleClick: (id: number) => void
   handleDelete: (item: any) => void
 }
 
-const ListWrapper = ({ datas, handleClick, handleDelete }: TListWrapper) => {
+const ListWrapper = ({
+  datas,
+  children,
+  handleClick,
+  handleDelete,
+}: TListWrapper) => {
   return (
     <div className='list-item-wrapper'>
       <ul className='list-items'>
@@ -24,6 +30,7 @@ const ListWrapper = ({ datas, handleClick, handleDelete }: TListWrapper) => {
               />
             </li>
           ))}
+        <li>{children}</li>
       </ul>
     </div>
   )

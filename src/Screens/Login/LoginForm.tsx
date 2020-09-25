@@ -4,18 +4,18 @@ import tree from '../../assets/tree.svg'
 
 import './loginForm.scss'
 
-type Props = {
+type TLoginForm = {
   handleSubmit: Function
   errorMsg: string
 }
 
-interface State {
+interface ILoginState {
   username: string
   password: string
 }
 
-class LoginForm extends PureComponent<Props, State> {
-  constructor(props: Props) {
+class LoginForm extends PureComponent<TLoginForm, ILoginState> {
+  constructor(props: TLoginForm) {
     super(props)
 
     this.state = {
@@ -27,7 +27,10 @@ class LoginForm extends PureComponent<Props, State> {
   handleChange = (event: React.FormEvent<{ name: string; value: string }>) => {
     const name = event.currentTarget.name
     const value = event.currentTarget.value
-    this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>)
+    this.setState(({ [name]: value } as unknown) as Pick<
+      ILoginState,
+      keyof ILoginState
+    >)
   }
 
   _handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
