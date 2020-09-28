@@ -12,6 +12,20 @@
     img {
       width: 100px;
     }
+    .card-text,
+    .card-subtext {
+      color: #348fd9;
+      min-width: 170px !important;
+      max-width: 180px;
+      margin: 0;
+    }
+
+    .card-text {
+      line-height: 20px;
+      font-weight: bolder;
+      margin-top: 10px;
+      margin-bottom: -5px;
+    }
   }
 
   button.delete-btn {

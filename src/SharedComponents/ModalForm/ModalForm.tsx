@@ -1,89 +1,108 @@
-import React, { PureComponent } from 'react'
-import { Form, Button, Modal } from 'react-bootstrap'
+import React, { PureComponent } from "react";
+import { Form, Button, Modal } from "react-bootstrap";
 
-type TInputs = { name: string; placeholder: string }
+type TInputs = {
+  name: string;
+  placeholder: string;
+  inputType: string;
+  datas?: Array<any>;
+};
 
 type Props = {
-  title: string
-  inputs: TInputs[]
-  handleSubmit: Function
-  errorMsg: string
-  show: boolean
-  onHide: Function
-}
+  title: string;
+  inputs: TInputs[];
+  handleSubmit: Function;
+  errorMsg: string;
+  show: boolean;
+  onHide: Function;
+};
 
 interface State {
-  name: string
-  firstname: string
-  lastname: string
-  position: number | null
+  name: string;
+  firstname: string;
+  lastname: string;
+  position: number | null;
+  role: string;
 }
 
 class ModalForm extends PureComponent<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
 
     this.state = {
-      name: '',
+      name: "",
       position: null,
-      firstname: '',
-      lastname: '',
-    }
+      firstname: "",
+      lastname: "",
+      role: "",
+    };
   }
 
   handleChange = (event: React.FormEvent<{ name: string; value: string }>) => {
-    const name = event.currentTarget.name
-    const value = event.currentTarget.value
-    this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>)
-  }
+    const name = event.currentTarget.name;
+    const value = event.currentTarget.value;
+    this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>);
+  };
 
   _handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-    const { onHide } = this.props
-    event.preventDefault()
-    const { handleSubmit } = this.props
-    handleSubmit(this.state)
-    onHide()
-  }
+    const { onHide } = this.props;
+    event.preventDefault();
+    const { handleSubmit } = this.props;
+    handleSubmit(this.state);
+    onHide();
+  };
 
   render() {
-    const { errorMsg, title, inputs, ...props } = this.props
+    const { errorMsg, title, inputs, ...props } = this.props;
     return (
       <Modal
-        size='lg'
-        aria-labelledby='contained-modal-title-vcenter'
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
         {...props}
       >
         <Modal.Header closeButton>
-          <Modal.Title id='contained-modal-title-vcenter'>
+          <Modal.Title id="contained-modal-title-vcenter">
             New {title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={this._handleSubmit}>
             {inputs.map((input: TInputs) => (
-              <Form.Group controlId='familyName' key={input.placeholder}>
+              <Form.Group controlId="familyName" key={input.placeholder}>
                 <Form.Label>
                   {input.name.charAt(0).toUpperCase() + input.name.substr(1)}
                 </Form.Label>
-                <Form.Control
-                  type='text'
-                  name={input.name}
-                  placeholder={input.placeholder}
-                  onChange={this.handleChange}
-                />
+                {input.inputType === "select" ? (
+                  <Form.Control
+                    as={input.inputType}
+                    name={input.name}
+                    onChange={this.handleChange}
+                  >
+                    {input.datas?.map((data) => (
+                      <option key={data.role}>{data.role}</option>
+                    ))}
+                  </Form.Control>
+                ) : (
+                  <Form.Control
+                    type={input.inputType}
+                    name={input.name}
+                    placeholder={input.placeholder}
+                    onChange={this.handleChange}
+                  />
+                )}
               </Form.Group>
             ))}
 
-            <Button type='submit' className='btn-primary mt-3'>
+            <Button type="submit" className="btn-primary mt-3">
               Create {title}
             </Button>
           </Form>
-          {errorMsg && <p className='error-text'>{errorMsg}</p>}
+          {errorMsg && <p className="error-text">{errorMsg}</p>}
         </Modal.Body>
       </Modal>
-    )
+    );
   }
 }
 
-export default ModalForm
+export default ModalForm;

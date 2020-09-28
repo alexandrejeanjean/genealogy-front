@@ -1,30 +1,35 @@
-import React from 'react'
-import Card from '../Card/Card'
-import family from '../../assets/family.svg'
-import './listWrapper.scss'
+import React from "react";
+import Card from "../Card/Card";
+import "./listWrapper.scss";
 
 type TListWrapper = {
-  datas: any
-  children?: any
-  handleClick: (id: number) => void
-  handleDelete: (item: any) => void
-}
+  datas: any;
+  additionalDatas?: any;
+  children?: any;
+  getSubText?: (id: number) => string;
+  getAvatar?: (id: number) => any;
+  handleClick: (id: number) => void;
+  handleDelete: (item: any) => void;
+};
 
 const ListWrapper = ({
   datas,
   children,
+  getAvatar,
+  getSubText,
   handleClick,
   handleDelete,
 }: TListWrapper) => {
   return (
-    <div className='list-item-wrapper'>
-      <ul className='list-items'>
+    <div className="list-item-wrapper">
+      <ul className="list-items">
         {datas &&
           datas.map((item: any, i: number) => (
             <li key={i + `_person`}>
               <Card
-                picture={family}
-                text={item.name || item.firstname}
+                picture={getAvatar && getAvatar(item.roleId)}
+                text={item.name || item.firstname + " " + item.lastname}
+                subtext={getSubText && getSubText(item.roleId)}
                 handleClick={() => handleClick(item.id)}
                 handleDelete={() => handleDelete(item)}
               />
@@ -33,7 +38,7 @@ const ListWrapper = ({
         <li>{children}</li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ListWrapper
+export default ListWrapper;

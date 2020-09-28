@@ -1,4 +1,6 @@
 .generations-wrapper {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   .generation-head,
   .generation-head-new {
     margin: 0;
@@ -13,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     p {
       color: #d8bd1b;
       font-size: 1.4rem;
@@ -26,6 +29,16 @@
       img {
         width: 35px;
       }
+    }
+  }
+
+  .generation-head-new {
+    display: flex;
+    justify-content: flex-start;
+
+    img {
+      margin-right: 20px;
+      width: 35px;
     }
   }
 
