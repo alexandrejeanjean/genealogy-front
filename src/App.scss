@@ -12,8 +12,15 @@ input,
 a,
 button,
 label {
-  font-family: 'Baloo 2', cursive;
+  font-family: "Baloo 2", cursive;
   color: #585858;
+}
+
+button {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 ul,
@@ -84,7 +91,7 @@ label {
   transition-duration: 0.5s;
   transition: all 0.3s linear;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     border: 3px solid #89c2d9;
     top: 0;

@@ -66,6 +66,9 @@ const Family = ({ location }: any) => {
       if (err && err.response) {
         const axiosError = err;
         console.log("Error :: get roles", axiosError.response);
+        setErrorMsg(
+          "Sorry, an error has occured. We can't access family roles."
+        );
         return axiosError.response.data;
       }
 
@@ -86,6 +89,9 @@ const Family = ({ location }: any) => {
       if (err && err.response) {
         const axiosError = err;
         console.log("Error :: get generation", axiosError.response);
+        setErrorMsg(
+          "Sorry, an error has occured. We can't access the generation's list."
+        );
         return axiosError.response.data;
       }
 
@@ -113,7 +119,7 @@ const Family = ({ location }: any) => {
         const axiosError = err;
         console.log("Error :: create generation", axiosError.response);
         setErrorMsg(
-          "Sorry, an error occured. Please try again or contact us if problem persists."
+          "Sorry, an error has occured. We can't create a new generation."
         );
         return axiosError.response.data;
       }
@@ -134,6 +140,9 @@ const Family = ({ location }: any) => {
       if (err && err.response) {
         const axiosError = err;
         console.log("Error :: delete generation", axiosError.response);
+        setErrorMsg(
+          "Sorry, an error has occured. We can't delete this generation."
+        );
         return axiosError.response.data;
       }
       throw err;
@@ -218,7 +227,7 @@ const Family = ({ location }: any) => {
           const axiosError = err;
           console.log("Error :: create person", axiosError.response);
           setErrorMsg(
-            "Sorry, an error occured. Please try again or contact us if problem persists."
+            "Sorry, an error has occured. We can't create this new person."
           );
           return axiosError.response.data;
         }
@@ -241,7 +250,10 @@ const Family = ({ location }: any) => {
     } catch (err) {
       if (err && err.response) {
         const axiosError = err;
-        console.log("Error :: delete family", axiosError.response);
+        console.log("Error :: delete person", axiosError.response);
+        setErrorMsg(
+          "Sorry, an error has occured. We can't delete this person."
+        );
         return axiosError.response.data;
       }
       throw err;
@@ -333,7 +345,7 @@ const Family = ({ location }: any) => {
         inputs={[
           {
             name: "position",
-            placeholder: "Enter the generation's position",
+            placeholder: "Ex : 1",
             inputType: "text",
           },
         ]}
