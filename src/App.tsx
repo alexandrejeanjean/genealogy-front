@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./Routes";
+import Routes from "./core/Routes";
 import UserProvider from "./store/UserProvider";
 import "./App.scss";
 
-function App() {
+const App = () => {
   return (
     <UserProvider>
       <Router>
@@ -12,6 +12,6 @@ function App() {
       </Router>
     </UserProvider>
   );
-}
+};
 
 export default App;
