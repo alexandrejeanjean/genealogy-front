@@ -21,6 +21,7 @@ type ServerError = { code: string; description: string };
 
 const Login = ({ isLogged, setIsLogged }: TLogin) => {
   const history = useHistory();
+  const [isSignUp, setSignUpForm] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   // Sign user if token already stored in local storage
@@ -46,12 +47,12 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
     }
   });
 
-  // Post user credentials,  store authorization token in local storage, set context user to logged in
-  const signIn = async (credentials: TCredententials) => {
+  // Post user credentials, store authorization token in local storage, set context user to logged in
+  const submitForm = async (credentials: TCredententials) => {
+    const endpoint = isSignUp ? "/signup" : "/signin";
     try {
-      const response = await apiClient.post("/signin", credentials);
+      const response = await apiClient.post(endpoint, credentials);
       if (response) {
-        console.log("response", response);
         const user = response.data;
 
         if (user.token) {
@@ -59,12 +60,13 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
           setIsLogged(true);
           LocalStorageService._setToken(user);
           return history.push("/dashboard");
+        } else {
+          setSignUpForm(false);
         }
       }
     } catch (err) {
       if (err && err.response) {
         const axiosError = err;
-        console.log("Error :: signin", axiosError.response);
         setErrorMsg("Wrong credentials. Try again, or contact us.");
         return axiosError.response.data;
       } else if (err && err.request) {
@@ -81,7 +83,12 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
   return (
     <Main>
       <span>ENDPOINT :: {process.env.REACT_APP_API_URL}</span>
-      <LoginForm handleSubmit={signIn} errorMsg={errorMsg} />
+      <LoginForm
+        handleSubmit={submitForm}
+        isSignUp={isSignUp}
+        setSignUpForm={(bool: boolean) => setSignUpForm(bool)}
+        errorMsg={errorMsg}
+      />
     </Main>
   );
 };
