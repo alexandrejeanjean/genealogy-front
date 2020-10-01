@@ -1,5 +1,5 @@
 import React from "react";
-import deletePic from "../../assets/delete.svg";
+import { deletePic } from "../../assets/imgPath";
 import "./card.scss";
 
 type TCard = {

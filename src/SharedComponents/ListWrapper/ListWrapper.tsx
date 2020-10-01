@@ -1,4 +1,5 @@
 import React from "react";
+import { Row, Col } from "react-bootstrap";
 import Card from "../Card/Card";
 import "./listWrapper.scss";
 
@@ -21,23 +22,25 @@ const ListWrapper = ({
   handleDelete,
 }: TListWrapper) => {
   return (
-    <div className="list-item-wrapper">
-      <ul className="list-items">
-        {datas &&
-          datas.map((item: any, i: number) => (
-            <li key={i + `_person`}>
-              <Card
-                picture={getAvatar && getAvatar(item.roleId)}
-                text={item.name || item.firstname + " " + item.lastname}
-                subtext={getSubText && getSubText(item.roleId)}
-                handleClick={() => handleClick(item.id)}
-                handleDelete={() => handleDelete(item)}
-              />
-            </li>
-          ))}
-        <li>{children}</li>
-      </ul>
-    </div>
+    <Row>
+      <Col className="list-item-wrapper">
+        <ul className="list-items">
+          {datas &&
+            datas.map((item: any, i: number) => (
+              <li key={i + `_person`}>
+                <Card
+                  picture={getAvatar && getAvatar(item.roleId)}
+                  text={item.name || item.firstname + " " + item.lastname}
+                  subtext={getSubText && getSubText(item.roleId)}
+                  handleClick={() => handleClick(item.id)}
+                  handleDelete={() => handleDelete(item)}
+                />
+              </li>
+            ))}
+          <li>{children}</li>
+        </ul>
+      </Col>
+    </Row>
   );
 };
 

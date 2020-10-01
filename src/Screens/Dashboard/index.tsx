@@ -5,7 +5,7 @@ import apiClient from "../../api";
 import ListWrapper from "../../SharedComponents/ListWrapper/ListWrapper";
 import CreateItemBtn from "../../SharedComponents/CreateItemBtn/CreateItemBtn";
 import ModalForm from "../../SharedComponents/ModalForm/ModalForm";
-import family from "../../assets/family.svg";
+import { family } from "../../assets/imgPath";
 import "./dashboard.scss";
 
 type TFamily = {
@@ -112,19 +112,18 @@ const Dashboard = () => {
         >
           <CreateItemBtn handleClick={() => setModalShow(true)} />
         </ListWrapper>
-
-        <ModalForm
-          title="Family"
-          show={modalShow}
-          inputs={[
-            { name: "name", placeholder: "Ex: Armstrong", inputType: "text" },
-          ]}
-          onHide={() => setModalShow(false)}
-          handleSubmit={createFamily}
-          errorMsg={errorMsg}
-        />
-        {errorMsg && <p className="error-text ml-5">{errorMsg}</p>}
       </section>
+      <ModalForm
+        title="Family"
+        show={modalShow}
+        inputs={[
+          { name: "name", placeholder: "Ex: Armstrong", inputType: "text" },
+        ]}
+        onHide={() => setModalShow(false)}
+        handleSubmit={createFamily}
+        errorMsg={errorMsg}
+      />
+      {errorMsg && <p className="error-text ml-5">{errorMsg}</p>}
     </Main>
   );
 };

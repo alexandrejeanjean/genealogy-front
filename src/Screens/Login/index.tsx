@@ -83,12 +83,14 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
   return (
     <Main>
       <span>ENDPOINT :: {process.env.REACT_APP_API_URL}</span>
-      <LoginForm
-        handleSubmit={submitForm}
-        isSignUp={isSignUp}
-        setSignUpForm={(bool: boolean) => setSignUpForm(bool)}
-        errorMsg={errorMsg}
-      />
+      <section>
+        <LoginForm
+          handleSubmit={submitForm}
+          isSignUp={isSignUp}
+          setSignUpForm={(bool: boolean) => setSignUpForm(bool)}
+          errorMsg={errorMsg}
+        />
+      </section>
     </Main>
   );
 };

@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Main from "../Theme/index";
 import ListWrapper from "../../SharedComponents/ListWrapper/ListWrapper";
 import ModalForm from "../../SharedComponents/ModalForm/ModalForm";
 import CreateItemBtn from "../../SharedComponents/CreateItemBtn/CreateItemBtn";
 import apiClient from "../../api/index";
-import deletePic from "../../assets/delete.svg";
-import addYellow from "../../assets/add-yellow.svg";
-import father from "../../assets/avatars/father.svg";
-import mother from "../../assets/avatars/mother.svg";
-import grandFather from "../../assets/avatars/grandfather.svg";
-import grandMother from "../../assets/avatars/grandmother.svg";
-import son from "../../assets/avatars/son.svg";
-import daughter from "../../assets/avatars/daughter.svg";
-import baby from "../../assets/avatars/baby.svg";
-import family from "../../assets/family.svg";
+import {
+  deletePic,
+  addYellow,
+  father,
+  mother,
+  grandFather,
+  grandMother,
+  son,
+  daughter,
+  baby,
+  family,
+} from "../../assets/imgPath";
+
 import "./family.scss";
 
 type TPerson = {
@@ -320,33 +323,40 @@ const Family = ({ location }: any) => {
         {genList &&
           genList.map((gen: TGeneration) => {
             return (
-              <div className="generations-wrapper" key={gen.position}>
-                <div className="generation-head">
-                  <p>Génération : {gen.position}</p>
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteGeneration(gen.id)}
-                  >
-                    <img src={deletePic} alt="delete button" />
-                  </button>
-                </div>
-                <ListWrapper
-                  datas={gen.peoples}
-                  getAvatar={(roleId: number) => getAvatar(roleId)}
-                  getSubText={(roleId: number) => getRoleName(roleId)}
-                  handleClick={() => console.log("click")}
-                  handleDelete={(person: TPerson) => deletePerson(person)}
-                >
-                  <CreateItemBtn
-                    handleClick={() =>
-                      setModalPerson({
-                        isVisible: true,
-                        additionalDatas: gen.id,
-                      })
-                    }
-                  />
-                </ListWrapper>
-              </div>
+              <Container fluid key={gen.position}>
+                <Row>
+                  <Col className="generations-wrapper">
+                    <Row>
+                      <Col className="generation-head">
+                        <p>Génération : {gen.position}</p>
+                        <button
+                          className="delete-btn"
+                          onClick={() => deleteGeneration(gen.id)}
+                        >
+                          <img src={deletePic} alt="delete button" />
+                        </button>
+                      </Col>
+                    </Row>
+
+                    <ListWrapper
+                      datas={gen.peoples}
+                      getAvatar={(roleId: number) => getAvatar(roleId)}
+                      getSubText={(roleId: number) => getRoleName(roleId)}
+                      handleClick={() => console.log("click")}
+                      handleDelete={(person: TPerson) => deletePerson(person)}
+                    >
+                      <CreateItemBtn
+                        handleClick={() =>
+                          setModalPerson({
+                            isVisible: true,
+                            additionalDatas: gen.id,
+                          })
+                        }
+                      />
+                    </ListWrapper>
+                  </Col>
+                </Row>
+              </Container>
             );
           })}
       </>
@@ -355,20 +365,31 @@ const Family = ({ location }: any) => {
 
   return (
     <Main pageTitle="Family">
-      <button className="btn-primary back-btn" onClick={() => history.goBack()}>
-        {`< Back`}
-      </button>
-      {renderGenerations()}
-      <Container fluid className="generations-wrapper">
-        <button
-          className="generation-head-new"
-          onClick={() => setModalGeneration(true)}
-        >
-          <img src={addYellow} alt="" />
-          <p>New Generation</p>
-        </button>
-      </Container>
-
+      <section>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Button
+                className="back-btn"
+                variant="link"
+                onClick={() => history.goBack()}
+              >
+                {`< My Families`}
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+        {renderGenerations()}
+        <Container fluid className="generations-wrapper">
+          <Button
+            className="generation-head-new"
+            onClick={() => setModalGeneration(true)}
+          >
+            <img src={addYellow} alt="" />
+            <p>New Generation</p>
+          </Button>
+        </Container>
+      </section>
       <ModalForm
         title="Generation"
         show={modalGenerationShow}

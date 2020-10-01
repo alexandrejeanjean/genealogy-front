@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import tree from "../../assets/tree.svg";
+import { tree } from "../../assets/imgPath";
 
 import "./loginForm.scss";
 

@@ -3,11 +3,9 @@ import { Navbar, Nav } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
 import { setAuthorization } from "../../api";
 import { withUser } from "../../store/UserProvider";
-
 import LocalStorageService from "../../services/LocalStorageService";
-
+import { tree } from "../../assets/imgPath";
 import "./navbar.scss";
-import tree from "../../assets/tree.svg";
 
 type Props = {
   isLogged: boolean;
