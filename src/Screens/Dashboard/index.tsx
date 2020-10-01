@@ -34,6 +34,11 @@ const Dashboard = () => {
         const axiosError = err;
         console.log("Error :: get families", axiosError.response);
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
 
       throw err;
@@ -58,6 +63,11 @@ const Dashboard = () => {
           "Sorry, an error occured. Please try again or contact us if problem persists."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
       throw err;
     }
@@ -74,6 +84,11 @@ const Dashboard = () => {
         const axiosError = err;
         console.log("Error :: delete family", axiosError.response);
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
       throw err;
     }

@@ -70,6 +70,11 @@ const Family = ({ location }: any) => {
           "Sorry, an error has occured. We can't access family roles."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
 
       throw err;
@@ -93,6 +98,11 @@ const Family = ({ location }: any) => {
           "Sorry, an error has occured. We can't access the generation's list."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
 
       throw err;
@@ -122,6 +132,11 @@ const Family = ({ location }: any) => {
           "Sorry, an error has occured. We can't create a new generation."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
       throw err;
     }
@@ -144,6 +159,11 @@ const Family = ({ location }: any) => {
           "Sorry, an error has occured. We can't delete this generation."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
       throw err;
     }
@@ -230,6 +250,11 @@ const Family = ({ location }: any) => {
             "Sorry, an error has occured. We can't create this new person."
           );
           return axiosError.response.data;
+        } else if (err && err.request) {
+          setErrorMsg(JSON.stringify(err.message));
+          return err.message;
+        } else {
+          setErrorMsg("Error. Try again, or contact us.");
         }
         throw err;
       }
@@ -255,6 +280,11 @@ const Family = ({ location }: any) => {
           "Sorry, an error has occured. We can't delete this person."
         );
         return axiosError.response.data;
+      } else if (err && err.request) {
+        setErrorMsg(JSON.stringify(err.message));
+        return err.message;
+      } else {
+        setErrorMsg("Error. Try again, or contact us.");
       }
       throw err;
     }

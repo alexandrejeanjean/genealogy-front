@@ -1,15 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 
 export function setAuthorization(Authorization: any) {
-  apiClient.defaults.headers.common.Authorization = Authorization
+  apiClient.defaults.headers.common.Authorization = Authorization;
 }
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
-  responseType: 'json',
+  baseURL: process.env.REACT_APP_API_URL + "/api",
+  responseType: "json",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-})
+});
 
-export default apiClient
+export default apiClient;
