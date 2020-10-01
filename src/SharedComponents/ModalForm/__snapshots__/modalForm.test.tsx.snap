@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalForm should render correctly 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="contained-modal-title-vcenter"
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  handleSubmit={[MockFunction]}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle
+      id="contained-modal-title-vcenter"
+    >
+      New 
+      Family
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <Form
+      inline={false}
+      onSubmit={[Function]}
+    >
+      <FormGroup
+        controlId="familyName"
+        key="Ex: Armstrong"
+      >
+        <FormLabel
+          column={false}
+          srOnly={false}
+        >
+          Name
+        </FormLabel>
+        <FormControl
+          name="name"
+          onChange={[Function]}
+          placeholder="Ex: Armstrong"
+          type="text"
+        />
+      </FormGroup>
+      <Button
+        active={false}
+        className="btn-primary mt-3"
+        disabled={false}
+        type="submit"
+        variant="primary"
+      >
+        Create 
+        Family
+      </Button>
+    </Form>
+    <p
+      className="error-text"
+    >
+      Error occured.
+    </p>
+  </ModalBody>
+</Modal>
+`;

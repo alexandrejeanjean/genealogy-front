@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingLazyPage should render correctly 1`] = `
+<main
+  className="loader-wrapper page"
+>
+  <section
+    className="loader"
+  >
+    <Loader
+      className=""
+      color="rgba(137, 194, 217, 0.3)"
+      height={100}
+      style={Object {}}
+      timeout={3000}
+      type="Circles"
+      visible={true}
+      width={100}
+    />
+  </section>
+</main>
+`;

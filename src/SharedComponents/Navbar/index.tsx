@@ -46,20 +46,6 @@ const Navigationbar = ({ isLogged, setIsLogged }: Props) => {
           <Nav.Link eventKey={2} as={Link} to="/dashboard" className="bold">
             My Families
           </Nav.Link>
-          {/* <NavDropdown
-            title='Actions'
-            id='collasible-nav-dropdown'
-            className='bold'
-          >
-            <NavDropdown.Item as={Link} to='/dashboard'>
-              Dashboard
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to='/family'>
-              New family
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-          </NavDropdown> */}
           <Nav.Link
             eventKey={2}
             as={Link}
