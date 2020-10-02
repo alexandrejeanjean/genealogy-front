@@ -38,6 +38,27 @@ class ModalForm extends PureComponent<Props, State> {
     };
   }
 
+  checkDatas = () => {
+    const { name, role, firstname, lastname, position } = this.state;
+    const { title } = this.props;
+
+    if (["Person"].indexOf(title) > -1) {
+      if (role === "" || firstname === "" || lastname === "") {
+        return true;
+      }
+    } else if (["Family"].indexOf(title) > -1) {
+      if (name === "") {
+        return true;
+      }
+    } else if (["Generation"].indexOf(title) > -1) {
+      if (!position) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  };
+
   handleChange = (event: React.FormEvent<{ name: string; value: string }>) => {
     const name = event.currentTarget.name;
     const value = event.currentTarget.value;
@@ -78,7 +99,11 @@ class ModalForm extends PureComponent<Props, State> {
                     as={input.inputType}
                     name={input.name}
                     onChange={this.handleChange}
+                    defaultValue={"DEFAULT"}
                   >
+                    <option value="DEFAULT" disabled>
+                      Select the role
+                    </option>
                     {input.datas?.map((data) => (
                       <option key={data.role}>{data.role}</option>
                     ))}
@@ -94,7 +119,11 @@ class ModalForm extends PureComponent<Props, State> {
               </Form.Group>
             ))}
 
-            <Button type="submit" className="btn-primary mt-3">
+            <Button
+              type="submit"
+              className="btn-primary mt-3"
+              disabled={this.checkDatas()}
+            >
               Create {title}
             </Button>
           </Form>
