@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render correctly 1`] = `
+<div
+  className="card-wrapper"
+>
+  <button
+    className="card"
+    onClick={[Function]}
+  >
+    <img
+      alt=""
+      src={[Function]}
+    />
+    <p
+      className="card-text"
+    >
+      Family 1
+    </p>
+    <p
+      className="card-subtext"
+    >
+       
+    </p>
+  </button>
+  <button
+    className="delete-btn"
+    onClick={[Function]}
+  >
+    <img
+      alt="delete button"
+      src={[Function]}
+    />
+  </button>
+</div>
+`;

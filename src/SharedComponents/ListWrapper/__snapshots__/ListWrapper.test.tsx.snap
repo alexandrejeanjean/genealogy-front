@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListWrapper should render correctly 1`] = `
+<Row
+  noGutters={false}
+>
+  <Col
+    className="list-item-wrapper"
+  >
+    <ul
+      className="list-items"
+    >
+      <li
+        key="0_person"
+      >
+        <Card
+          handleClick={[Function]}
+          handleDelete={[Function]}
+          text="Armstrong"
+        />
+      </li>
+      <li>
+        <CreateItemBtn
+          handleClick={[MockFunction]}
+        />
+      </li>
+    </ul>
+  </Col>
+</Row>
+`;

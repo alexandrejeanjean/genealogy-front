@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageTitle should render page title if pageTitle props exist and check if props is equal to Dashboard 1`] = `
+exports[`PageTitle should render page title with text Dashboard 1`] = `
 <PageTitle
   pageTitle="Dashboard"
 >

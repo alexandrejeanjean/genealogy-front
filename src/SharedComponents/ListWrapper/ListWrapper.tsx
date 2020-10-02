@@ -5,7 +5,6 @@ import "./listWrapper.scss";
 
 type TListWrapper = {
   datas: any;
-  additionalDatas?: any;
   children?: any;
   getSubText?: (id: number) => string;
   getAvatar?: (id: number) => any;
