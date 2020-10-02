@@ -82,7 +82,6 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
 
   return (
     <Main>
-      <span>ENDPOINT :: {process.env.REACT_APP_API_URL}</span>
       <section>
         <LoginForm
           handleSubmit={submitForm}
