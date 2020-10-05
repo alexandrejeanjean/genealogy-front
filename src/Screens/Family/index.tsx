@@ -68,7 +68,6 @@ const Family = ({ location, setToastVisible }: any) => {
       }
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't access to family roles");
-      throw err;
     }
   }, [setToastVisible]);
 
@@ -90,7 +89,6 @@ const Family = ({ location, setToastVisible }: any) => {
           setToastVisible,
           "We can't access the generation's list."
         );
-        throw err;
       }
     },
     [setToastVisible]
@@ -113,7 +111,6 @@ const Family = ({ location, setToastVisible }: any) => {
       if (response) getGenerations(familyId);
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't create a new generation.");
-      throw err;
     }
   };
 
@@ -128,7 +125,6 @@ const Family = ({ location, setToastVisible }: any) => {
       if (response) getGenerations(location.state.datas);
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't delete this generation.");
-      throw err;
     }
   };
 
@@ -207,7 +203,6 @@ const Family = ({ location, setToastVisible }: any) => {
         if (response) getGenerations(familyId);
       } catch (err) {
         ErrorHandler(err, setToastVisible, "We can't create this new person.");
-        throw err;
       }
     }
   };
@@ -225,7 +220,6 @@ const Family = ({ location, setToastVisible }: any) => {
       if (response) getGenerations(location.state.datas);
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't delete this person.");
-      throw err;
     }
   };
 

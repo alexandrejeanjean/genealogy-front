@@ -73,9 +73,10 @@ const Login = ({ isLogged, setIsLogged, setToastVisible }: TLogin) => {
       ErrorHandler(
         err,
         setToastVisible,
-        "Wrong credentials. Try again, or contact us."
+        endpoint === "/signup"
+          ? "Username already exist."
+          : "Wrong credentials. Try again, or contact us."
       );
-      throw err;
     }
   };
 

@@ -38,7 +38,6 @@ const Dashboard = ({ setToastVisible }: TDashboard) => {
       }
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't access to your families.");
-      throw err;
     }
   }, [setToastVisible]);
 
@@ -54,7 +53,6 @@ const Dashboard = ({ setToastVisible }: TDashboard) => {
       if (response) getFamilies();
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't create your family.");
-      throw err;
     }
   };
 
@@ -66,7 +64,6 @@ const Dashboard = ({ setToastVisible }: TDashboard) => {
       if (response) getFamilies();
     } catch (err) {
       ErrorHandler(err, setToastVisible, "We can't delete this family.");
-      throw err;
     }
   };
 
