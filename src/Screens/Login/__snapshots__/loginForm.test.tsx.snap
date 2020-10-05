@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should render correctly 1`] = `
+<Container
+  className="login-wrapper"
+  fluid={true}
+>
+  <Row
+    className="vh-100"
+    noGutters={false}
+  >
+    <Col
+      className="left d-flex flex-column justify-content-center align-items-center"
+      md={4}
+      sm={12}
+      xs={12}
+    >
+      <div
+        className="left-mobile-title-wrapper mb-4"
+      >
+        <img
+          alt="genealogy-logo"
+          className="dna-logo"
+          src={[Function]}
+        />
+        <h1>
+          Family tree
+        </h1>
+      </div>
+      <div
+        className="left-desktop-title-wrapper mb-4"
+      >
+        <h1>
+          Sign up
+        </h1>
+      </div>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormGroup
+          controlId="formBasicUsername"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            E-mail
+          </FormLabel>
+          <FormControl
+            name="username"
+            onChange={[Function]}
+            placeholder="Ex: Anakin@skywalker.io "
+            type="text"
+          />
+          <FormText
+            className="text-muted"
+          >
+            We'll never share your username with anyone else.
+          </FormText>
+        </FormGroup>
+        <FormGroup
+          controlId="formBasicPassword"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Password
+          </FormLabel>
+          <FormControl
+            name="password"
+            onChange={[Function]}
+            placeholder="Ex: min 8 characters"
+            type="password"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          className="btn-primary mt-3"
+          disabled={true}
+          type="submit"
+          variant="primary"
+        >
+          Sign up
+        </Button>
+      </Form>
+      <Button
+        active={false}
+        className="mt-2"
+        disabled={false}
+        onClick={[Function]}
+        variant="link"
+      >
+        Sign in here !
+      </Button>
+    </Col>
+    <Col
+      className="right-desktop-title-wrapper"
+      md={8}
+    >
+      <img
+        alt=""
+        className="right-desktop-logo"
+        src={[Function]}
+      />
+      <h2>
+        Welcome to Family Tree
+      </h2>
+      <h3>
+        Start your journey now 
+        <br />
+         & build an amazing tree of life
+      </h3>
+    </Col>
+  </Row>
+</Container>
+`;

@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { withToast } from "../../store/ToastProvider";
+import { ErrorHandler } from "../../helpers";
+
+import apiClient from "../../api/index";
+
 import { Container, Button, Row, Col } from "react-bootstrap";
 import Main from "../Theme/index";
 import ListWrapper from "../../SharedComponents/ListWrapper/ListWrapper";
 import ModalForm from "../../SharedComponents/ModalForm/ModalForm";
 import CreateItemBtn from "../../SharedComponents/CreateItemBtn/CreateItemBtn";
-import apiClient from "../../api/index";
+
 import {
   deletePic,
   addYellow,
@@ -28,6 +33,7 @@ type TPerson = {
   firstname: string;
   lastname: string;
 };
+
 type TGeneration = {
   id: number;
   position: number;
@@ -37,15 +43,11 @@ type TGeneration = {
 
 type TGetGenerations = TGeneration[];
 
-interface TFamilyProps {
-  location: { state: { datas: number } };
-}
-
 type TFamilyRole = { id: number; role: string };
 
 type TFamilyRoles = TFamilyRole[];
 
-const Family = ({ location }: any) => {
+const Family = ({ location, setToastVisible }: any) => {
   const history = useHistory();
   const [genList, setGenerationList] = useState<TGetGenerations>([]);
   const [familyRoles, setRolesList] = useState<TFamilyRoles>([]);
@@ -54,9 +56,8 @@ const Family = ({ location }: any) => {
     additionalDatas: number | null;
   }>({ isVisible: false, additionalDatas: null });
   const [modalGenerationShow, setModalGeneration] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState("");
 
-  const getFamilyRoles = async () => {
+  const getFamilyRoles = useCallback(async () => {
     try {
       const response = await apiClient.get(`/roles`);
       const roles = response.data;
@@ -66,58 +67,41 @@ const Family = ({ location }: any) => {
         setRolesList(list);
       }
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: get roles", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error has occured. We can't access family roles."
-        );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
-
+      ErrorHandler(err, setToastVisible, "We can't access to family roles");
       throw err;
     }
-  };
+  }, [setToastVisible]);
 
-  const getGenerations = async (familyId: number) => {
-    try {
-      const response = await apiClient.get(`/families/${familyId}/generations`);
-      const generation = response.data;
-
-      if (generation) {
-        let list = generation;
-        setGenerationList(list);
-      }
-    } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: get generation", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error has occured. We can't access the generation's list."
+  const getGenerations = useCallback(
+    async (familyId: number) => {
+      try {
+        const response = await apiClient.get(
+          `/families/${familyId}/generations`
         );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+        const generation = response.data;
 
-      throw err;
-    }
-  };
+        if (generation) {
+          let list = generation;
+          setGenerationList(list);
+        }
+      } catch (err) {
+        ErrorHandler(
+          err,
+          setToastVisible,
+          "We can't access the generation's list."
+        );
+        throw err;
+      }
+    },
+    [setToastVisible]
+  );
 
   useEffect(() => {
     if (location?.state?.datas) {
       getGenerations(location.state.datas);
       getFamilyRoles();
     }
-  }, [location]);
+  }, [location, getGenerations, getFamilyRoles]);
 
   const createGeneration = async (gen: { position: number }) => {
     const familyId: number = location.state.datas;
@@ -128,19 +112,7 @@ const Family = ({ location }: any) => {
       );
       if (response) getGenerations(familyId);
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: create generation", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error has occured. We can't create a new generation."
-        );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+      ErrorHandler(err, setToastVisible, "We can't create a new generation.");
       throw err;
     }
   };
@@ -155,19 +127,7 @@ const Family = ({ location }: any) => {
 
       if (response) getGenerations(location.state.datas);
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: delete generation", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error has occured. We can't delete this generation."
-        );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+      ErrorHandler(err, setToastVisible, "We can't delete this generation.");
       throw err;
     }
   };
@@ -246,19 +206,7 @@ const Family = ({ location }: any) => {
         );
         if (response) getGenerations(familyId);
       } catch (err) {
-        if (err && err.response) {
-          const axiosError = err;
-          console.log("Error :: create person", axiosError.response);
-          setErrorMsg(
-            "Sorry, an error has occured. We can't create this new person."
-          );
-          return axiosError.response.data;
-        } else if (err && err.request) {
-          setErrorMsg(JSON.stringify(err.message));
-          return err.message;
-        } else {
-          setErrorMsg("Error. Try again, or contact us.");
-        }
+        ErrorHandler(err, setToastVisible, "We can't create this new person.");
         throw err;
       }
     }
@@ -276,19 +224,7 @@ const Family = ({ location }: any) => {
 
       if (response) getGenerations(location.state.datas);
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: delete person", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error has occured. We can't delete this person."
-        );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+      ErrorHandler(err, setToastVisible, "We can't delete this person.");
       throw err;
     }
   };
@@ -316,10 +252,9 @@ const Family = ({ location }: any) => {
           onHide={() =>
             setModalPerson({ isVisible: false, additionalDatas: null })
           }
-          handleSubmit={createPerson}
-          errorMsg={errorMsg}
+          submit={createPerson}
         />
-        {errorMsg && <p className="error-text ml-5">{errorMsg}</p>}
+
         {genList &&
           genList.map((gen: TGeneration) => {
             return (
@@ -401,12 +336,10 @@ const Family = ({ location }: any) => {
           },
         ]}
         onHide={() => setModalGeneration(false)}
-        handleSubmit={createGeneration}
-        errorMsg={errorMsg}
+        submit={createGeneration}
       />
-      {errorMsg && <p className="error-text ml-5">{errorMsg}</p>}
     </Main>
   );
 };
 
-export default Family;
+export default withToast(Family);

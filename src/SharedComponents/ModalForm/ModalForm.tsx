@@ -11,8 +11,8 @@ type TInputs = {
 type Props = {
   title: string;
   inputs: TInputs[];
-  handleSubmit: Function;
-  errorMsg: string;
+  submit: Function;
+
   show: boolean;
   onHide: Function;
 };
@@ -38,6 +38,7 @@ class ModalForm extends PureComponent<Props, State> {
     };
   }
 
+  // Simple inputs verificator: will improve this with a json-validator
   checkDatas = () => {
     const { name, role, firstname, lastname, position } = this.state;
     const { title } = this.props;
@@ -65,22 +66,23 @@ class ModalForm extends PureComponent<Props, State> {
     this.setState(({ [name]: value } as unknown) as Pick<State, keyof State>);
   };
 
-  _handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-    const { onHide } = this.props;
+  handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const { handleSubmit } = this.props;
-    handleSubmit(this.state);
+    const { onHide, submit } = this.props;
+    submit(this.state);
     onHide();
   };
 
   render() {
-    const { errorMsg, title, inputs, ...props } = this.props;
+    const { title, inputs, onHide, show } = this.props;
+
     return (
       <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        {...props}
+        onHide={onHide}
+        show={show}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -88,9 +90,12 @@ class ModalForm extends PureComponent<Props, State> {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={this._handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             {inputs.map((input: TInputs) => (
-              <Form.Group controlId="familyName" key={input.placeholder}>
+              <Form.Group
+                controlId={"formControl_" + input.name}
+                key={input.placeholder}
+              >
                 <Form.Label>
                   {input.name.charAt(0).toUpperCase() + input.name.substr(1)}
                 </Form.Label>
@@ -127,7 +132,6 @@ class ModalForm extends PureComponent<Props, State> {
               Create {title}
             </Button>
           </Form>
-          {errorMsg && <p className="error-text">{errorMsg}</p>}
         </Modal.Body>
       </Modal>
     );

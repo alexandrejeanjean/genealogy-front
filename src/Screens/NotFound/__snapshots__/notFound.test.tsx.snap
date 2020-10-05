@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound should render correctly 1`] = `
+<Component>
+  <Container
+    className="not-found-wrapper"
+    fluid={true}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        className="w-100 vh-100 d-flex justify-content-center align-items-center flex-column"
+      >
+        <img
+          alt=""
+          src={[Function]}
+          width="200px"
+        />
+        <p
+          className="mt-3"
+        >
+          Page not found... sorry
+        </p>
+      </Col>
+    </Row>
+  </Container>
+</Component>
+`;

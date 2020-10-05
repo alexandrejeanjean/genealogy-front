@@ -5,8 +5,7 @@ import { tree } from "../../assets/imgPath";
 import "./loginForm.scss";
 
 type TLoginForm = {
-  handleSubmit: Function;
-  errorMsg: string;
+  handlesubmit: Function;
   isSignUp: boolean;
   setSignUpForm: Function;
 };
@@ -26,6 +25,16 @@ class LoginForm extends PureComponent<TLoginForm, ILoginState> {
     };
   }
 
+  // Simple inputs verificator: will improve this with a json-validator
+  checkDatas = () => {
+    const { username, password } = this.state;
+    const expression = /\S+@\S+/;
+    let validEmail = expression.test(String(username).toLowerCase());
+
+    if (!validEmail || password.length < 8) return true;
+    return false;
+  };
+
   handleChange = (event: React.FormEvent<{ name: string; value: string }>) => {
     const name = event.currentTarget.name;
     const value = event.currentTarget.value;
@@ -37,12 +46,12 @@ class LoginForm extends PureComponent<TLoginForm, ILoginState> {
 
   _handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const { handleSubmit } = this.props;
-    handleSubmit(this.state);
+    const { handlesubmit } = this.props;
+    handlesubmit(this.state);
   };
 
   render() {
-    const { errorMsg, isSignUp, setSignUpForm } = this.props;
+    const { isSignUp, setSignUpForm } = this.props;
     return (
       <Container fluid className="login-wrapper">
         <Row className="vh-100">
@@ -65,7 +74,7 @@ class LoginForm extends PureComponent<TLoginForm, ILoginState> {
                 <Form.Control
                   type="text"
                   name="username"
-                  placeholder="Enter username"
+                  placeholder="Ex: Anakin@skywalker.io "
                   onChange={this.handleChange}
                 />
                 <Form.Text className="text-muted">
@@ -78,12 +87,16 @@ class LoginForm extends PureComponent<TLoginForm, ILoginState> {
                 <Form.Control
                   type="password"
                   name="password"
-                  placeholder="Password"
+                  placeholder="Ex: min 8 characters"
                   onChange={this.handleChange}
                 />
               </Form.Group>
 
-              <Button type="submit" className="btn-primary mt-3">
+              <Button
+                type="submit"
+                className="btn-primary mt-3"
+                disabled={this.checkDatas()}
+              >
                 {isSignUp ? "Sign up" : "Sign In"}
               </Button>
             </Form>
@@ -95,8 +108,6 @@ class LoginForm extends PureComponent<TLoginForm, ILoginState> {
             >
               {isSignUp ? "Sign in here !" : "Sign up here !"}
             </Button>
-
-            {errorMsg && <p className="error-text">{errorMsg}</p>}
           </Col>
           <Col md={8} className="right-desktop-title-wrapper">
             <img src={tree} alt="" className="right-desktop-logo" />

@@ -5,7 +5,7 @@ import ModalForm from "./ModalForm";
 const modalShow = true;
 const setModalShow = jest.fn();
 const createFamily = jest.fn();
-const errorMsg = "Error occured.";
+
 const inputsArr = [
   { name: "name", placeholder: "Ex: Armstrong", inputType: "text" },
 ];
@@ -17,8 +17,7 @@ describe("ModalForm", () => {
         show={modalShow}
         inputs={inputsArr}
         onHide={() => setModalShow(false)}
-        handleSubmit={createFamily}
-        errorMsg={errorMsg}
+        submit={createFamily}
       />
     );
     expect(Component).toMatchSnapshot();
@@ -31,8 +30,7 @@ describe("ModalForm", () => {
         show={modalShow}
         inputs={inputsArr}
         onHide={() => setModalShow(false)}
-        handleSubmit={createFamily}
-        errorMsg={errorMsg}
+        submit={createFamily}
       />
     );
     expect(Component.find(".form-group input").length).toBe(inputsArr.length);

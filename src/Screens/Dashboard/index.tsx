@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import Main from "../Theme/index";
+import { withToast } from "../../store/ToastProvider";
+import { ErrorHandler } from "../../helpers";
+
 import apiClient from "../../api";
+
+import Main from "../Theme/index";
 import ListWrapper from "../../SharedComponents/ListWrapper/ListWrapper";
 import CreateItemBtn from "../../SharedComponents/CreateItemBtn/CreateItemBtn";
 import ModalForm from "../../SharedComponents/ModalForm/ModalForm";
@@ -15,14 +19,17 @@ type TFamily = {
 
 type TGetFamilies = TFamily[];
 
-const Dashboard = () => {
+type TDashboard = {
+  setToastVisible: Function;
+};
+
+const Dashboard = ({ setToastVisible }: TDashboard) => {
   const [list, setList] = useState<TGetFamilies>([]);
   const [modalShow, setModalShow] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState("");
+
   const history = useHistory();
 
-  // Get family datas ---------------------------------------
-  const getFamilies = async () => {
+  const getFamilies = useCallback(async () => {
     try {
       const response = await apiClient.get("/families");
       const families = response.data;
@@ -30,25 +37,15 @@ const Dashboard = () => {
         setList(families);
       }
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: get families", axiosError.response);
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
-
+      ErrorHandler(err, setToastVisible, "We can't access to your families.");
       throw err;
     }
-  };
+  }, [setToastVisible]);
 
   // Get datas on component did mount --------------------------
   useEffect(() => {
     getFamilies();
-  }, []);
+  }, [getFamilies]);
 
   // Add family  ---------------------------------------
   const createFamily = async (family: { name: string }) => {
@@ -56,19 +53,7 @@ const Dashboard = () => {
       const response = await apiClient.post(`/families`, { name: family.name });
       if (response) getFamilies();
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: create family", axiosError.response);
-        setErrorMsg(
-          "Sorry, an error occured. Please try again or contact us if problem persists."
-        );
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+      ErrorHandler(err, setToastVisible, "We can't create your family.");
       throw err;
     }
   };
@@ -80,16 +65,7 @@ const Dashboard = () => {
       const response = await apiClient.delete(`/families/${familyId}`);
       if (response) getFamilies();
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        console.log("Error :: delete family", axiosError.response);
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
+      ErrorHandler(err, setToastVisible, "We can't delete this family.");
       throw err;
     }
   };
@@ -120,12 +96,10 @@ const Dashboard = () => {
           { name: "name", placeholder: "Ex: Armstrong", inputType: "text" },
         ]}
         onHide={() => setModalShow(false)}
-        handleSubmit={createFamily}
-        errorMsg={errorMsg}
+        submit={createFamily}
       />
-      {errorMsg && <p className="error-text ml-5">{errorMsg}</p>}
     </Main>
   );
 };
 
-export default Dashboard;
+export default withToast(Dashboard);

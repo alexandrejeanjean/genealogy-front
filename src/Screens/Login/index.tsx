@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import apiClient, { setAuthorization } from "../../api";
 import { withUser } from "../../store/UserProvider";
+import { withToast } from "../../store/ToastProvider";
+import { ErrorHandler } from "../../helpers";
 import LocalStorageService from "../../services/LocalStorageService";
 
 import LoginForm from "./LoginForm";
@@ -10,6 +12,7 @@ import Main from "../Theme/index";
 type TLogin = {
   setIsLogged: Function;
   isLogged: boolean;
+  setToastVisible: Function;
 };
 
 type TCredententials = {
@@ -19,10 +22,9 @@ type TCredententials = {
 
 type ServerError = { code: string; description: string };
 
-const Login = ({ isLogged, setIsLogged }: TLogin) => {
+const Login = ({ isLogged, setIsLogged, setToastVisible }: TLogin) => {
   const history = useHistory();
   const [isSignUp, setSignUpForm] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
 
   // Sign user if token already stored in local storage
   const autoSignIn = async () => {
@@ -53,29 +55,26 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
     try {
       const response = await apiClient.post(endpoint, credentials);
       if (response) {
+        if (endpoint === "/signup") {
+          setToastVisible(true, "Successful registration! :) ", "success");
+        }
         const user = response.data;
-
         if (user.token) {
           setAuthorization(user.token);
           setIsLogged(true);
           LocalStorageService._setToken(user);
+          setToastVisible(true, "Logged in !", "success");
           return history.push("/dashboard");
         } else {
           setSignUpForm(false);
         }
       }
     } catch (err) {
-      if (err && err.response) {
-        const axiosError = err;
-        setErrorMsg("Wrong credentials. Try again, or contact us.");
-        return axiosError.response.data;
-      } else if (err && err.request) {
-        setErrorMsg(JSON.stringify(err.message));
-        return err.message;
-      } else {
-        setErrorMsg("Error. Try again, or contact us.");
-      }
-
+      ErrorHandler(
+        err,
+        setToastVisible,
+        "Wrong credentials. Try again, or contact us."
+      );
       throw err;
     }
   };
@@ -84,14 +83,13 @@ const Login = ({ isLogged, setIsLogged }: TLogin) => {
     <Main>
       <section>
         <LoginForm
-          handleSubmit={submitForm}
+          handlesubmit={submitForm}
           isSignUp={isSignUp}
           setSignUpForm={(bool: boolean) => setSignUpForm(bool)}
-          errorMsg={errorMsg}
         />
       </section>
     </Main>
   );
 };
 
-export default withUser(Login);
+export default withUser(withToast(Login));

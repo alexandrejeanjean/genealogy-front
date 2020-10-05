@@ -15,7 +15,6 @@ exports[`ModalForm should render correctly 1`] = `
     }
   }
   enforceFocus={true}
-  handleSubmit={[MockFunction]}
   keyboard={true}
   onHide={[Function]}
   restoreFocus={true}
@@ -39,7 +38,7 @@ exports[`ModalForm should render correctly 1`] = `
       onSubmit={[Function]}
     >
       <FormGroup
-        controlId="familyName"
+        controlId="formControl_name"
         key="Ex: Armstrong"
       >
         <FormLabel
@@ -58,7 +57,7 @@ exports[`ModalForm should render correctly 1`] = `
       <Button
         active={false}
         className="btn-primary mt-3"
-        disabled={false}
+        disabled={true}
         type="submit"
         variant="primary"
       >
@@ -66,11 +65,6 @@ exports[`ModalForm should render correctly 1`] = `
         Family
       </Button>
     </Form>
-    <p
-      className="error-text"
-    >
-      Error occured.
-    </p>
   </ModalBody>
 </Modal>
 `;

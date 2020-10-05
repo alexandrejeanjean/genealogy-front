@@ -1,0 +1,24 @@
+.toast-wrapper {
+  height: 40px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightyellow;
+  color: white;
+  font-weight: bolder;
+  &--success {
+    @extend .toast-wrapper;
+    background-color: lightgreen;
+  }
+  &--error {
+    @extend .toast-wrapper;
+    background-color: rgb(255, 58, 44);
+  }
+  padding: 8;
+}

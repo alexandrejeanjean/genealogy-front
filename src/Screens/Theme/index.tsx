@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "../../SharedComponents/Navbar";
-import { UserContext } from "../../store/UserProvider";
+import { withUser } from "../../store/UserProvider";
 import PageTitle from "../../SharedComponents/PageTitle/PageTitle";
 import "./theme.scss";
 
 type Props = {
-  children: any;
+  children: React.ReactNode;
   isLogged?: boolean;
   pageTitle?: string;
 };
@@ -13,9 +13,7 @@ type Props = {
 const Main = ({ children, isLogged, pageTitle }: Props) => {
   return (
     <>
-      <UserContext.Consumer>
-        {(value) => <Navbar isLogged={value.isLogged} />}
-      </UserContext.Consumer>
+      <Navbar isLogged={isLogged} />
       <main className="main-theme-wrapper">
         <PageTitle pageTitle={pageTitle} />
         {children}
@@ -24,4 +22,4 @@ const Main = ({ children, isLogged, pageTitle }: Props) => {
   );
 };
 
-export default Main;
+export default withUser(Main);
