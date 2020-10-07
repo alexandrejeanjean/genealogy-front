@@ -29,7 +29,7 @@
     "start:staging": "env-cmd -f .env.staging react-scripts start",
     "build": "react-scripts build",
     "start": "node server/server.js",
-    "test": "react-scripts test",
+    "test": "yarn jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
