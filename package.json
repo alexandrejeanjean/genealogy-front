@@ -24,6 +24,7 @@
     "typescript": "~3.8.0"
   },
   "scripts": {
+    "start-docker:staging": "sudo docker-compose up",
     "start:development": "env-cmd -f .env.development react-scripts start",
     "start:staging": "env-cmd -f .env.staging react-scripts start",
     "build": "react-scripts build",
