@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t alexandrejeanjean/genealogy-front -f Dockerfile.staging .
+
+script:
+  - docker run -e CI=true alexandrejeanjean/genealogy-front yarn test
+
+after_success:
+  - docker build -t alexandrejeanjean/genealogy-front .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push alexandrejeanjean/genealogy-front

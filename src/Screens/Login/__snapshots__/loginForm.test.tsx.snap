@@ -34,57 +34,120 @@ exports[`LoginForm should render correctly 1`] = `
           Sign up
         </h1>
       </div>
-      <Form
-        inline={false}
+      <Formik
+        initialValues={
+          Object {
+            "password": "",
+            "username": "",
+          }
+        }
         onSubmit={[Function]}
+        validationSchema={
+          ObjectSchema {
+            "_blacklist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_conditions": Array [],
+            "_defaultDefault": [Function],
+            "_deps": Array [],
+            "_excludedEdges": Array [],
+            "_exclusive": Object {},
+            "_mutate": undefined,
+            "_nodes": Array [
+              "password",
+              "username",
+            ],
+            "_options": Object {
+              "abortEarly": true,
+              "recursive": true,
+            },
+            "_type": "object",
+            "_typeError": [Function],
+            "_whitelist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "fields": Object {
+              "password": StringSchema {
+                "_blacklist": RefSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "_conditions": Array [],
+                "_deps": Array [],
+                "_exclusive": Object {
+                  "matches": false,
+                  "max": true,
+                  "required": true,
+                },
+                "_mutate": undefined,
+                "_options": Object {
+                  "abortEarly": true,
+                  "recursive": true,
+                },
+                "_type": "string",
+                "_typeError": [Function],
+                "_whitelist": RefSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "tests": Array [
+                  [Function],
+                  [Function],
+                  [Function],
+                ],
+                "transforms": Array [
+                  [Function],
+                ],
+                "type": "string",
+              },
+              "username": StringSchema {
+                "_blacklist": RefSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "_conditions": Array [],
+                "_deps": Array [],
+                "_exclusive": Object {
+                  "email": false,
+                  "matches": false,
+                  "max": true,
+                  "required": true,
+                },
+                "_mutate": undefined,
+                "_options": Object {
+                  "abortEarly": true,
+                  "recursive": true,
+                },
+                "_type": "string",
+                "_typeError": [Function],
+                "_whitelist": RefSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "tests": Array [
+                  [Function],
+                  [Function],
+                  [Function],
+                  [Function],
+                ],
+                "transforms": Array [
+                  [Function],
+                ],
+                "type": "string",
+              },
+            },
+            "tests": Array [],
+            "transforms": Array [
+              [Function],
+            ],
+            "type": "object",
+          }
+        }
       >
-        <FormGroup
-          controlId="formBasicUsername"
-        >
-          <FormLabel
-            column={false}
-            srOnly={false}
-          >
-            E-mail
-          </FormLabel>
-          <FormControl
-            name="username"
-            onChange={[Function]}
-            placeholder="Ex: Anakin@skywalker.io "
-            type="text"
-          />
-          <FormText
-            className="text-muted"
-          >
-            We'll never share your username with anyone else.
-          </FormText>
-        </FormGroup>
-        <FormGroup
-          controlId="formBasicPassword"
-        >
-          <FormLabel
-            column={false}
-            srOnly={false}
-          >
-            Password
-          </FormLabel>
-          <FormControl
-            name="password"
-            onChange={[Function]}
-            placeholder="Ex: min 8 characters"
-            type="password"
-          />
-        </FormGroup>
-        <Button
-          active={false}
-          className="btn-primary mt-3"
-          disabled={true}
-          type="submit"
-          variant="primary"
-        >
-          Sign up
-        </Button>
-      </Form>
+        <Component />
+      </Formik>
       <Button
         active={false}
         className="mt-2"

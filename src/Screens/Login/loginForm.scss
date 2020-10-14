@@ -2,8 +2,21 @@
   margin: 0;
   background-color: #fff;
 
+  .error {
+    border: 0.2em solid #ff6565;
+  }
+
+  .error-message {
+    color: #ff6565;
+    padding: 0.5em 0.2em;
+    height: 1em;
+    font-size: 0.8em;
+    margin-bottom: 2em;
+  }
+
   .left {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.12),
+      0 0.1em 0.2em rgba(0, 0, 0, 0.24);
 
     .left-mobile-title-wrapper {
       display: none;
@@ -30,15 +43,14 @@
     h2 {
       font-size: 3rem;
       color: #348fd9;
-
-      margin-top: 20px;
+      margin-top: 0.2em;
     }
 
     h3 {
       color: #585858;
       font-size: 1.4rem;
       text-align: center;
-      line-height: 30px;
+      line-height: 1.5em;
     }
   }
 }
@@ -54,11 +66,13 @@
 
       .left-mobile-title-wrapper {
         display: block;
-        width: 200px;
+        width: 100%;
+        margin: auto;
+        text-align: center;
         .dna-logo {
-          width: 160px;
+          width: 16em;
           margin: auto;
-          margin-bottom: 20px;
+          margin-bottom: 2em;
         }
         h1 {
           color: #348fd9;
