@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import LoginForm from "./LoginForm";
 
 const LoginFormProps = {
-  handlesubmit: jest.fn(),
+  _handleSubmit: jest.fn(),
   isSignUp: true,
   setSignUpForm: jest.fn(),
 };

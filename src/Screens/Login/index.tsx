@@ -84,7 +84,7 @@ const Login = ({ isLogged, setIsLogged, setToastVisible }: TLogin) => {
     <Main>
       <section>
         <LoginForm
-          handlesubmit={submitForm}
+          _handleSubmit={submitForm}
           isSignUp={isSignUp}
           setSignUpForm={(bool: boolean) => setSignUpForm(bool)}
         />
