@@ -4,23 +4,24 @@
   .generation-head,
   .generation-head-new {
     margin: 0;
-    margin-top: 20px;
+    margin-top: 0.2em;
     width: 100%;
+    max-height: 3em;
     background-color: #f8f1c7;
     background: linear-gradient(259.07deg, #fffce9 4.07%, #fdf7d2 100%);
     position: relative;
-    padding: 0.25em 3em;
+    padding: 0 3em;
     display: inline-block;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5em;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     p {
       color: #d8bd1b;
-      font-size: 1.4rem;
-      line-height: 35px;
+      font-size: 1.4em;
+      line-height: 3.5em;
       margin-bottom: 0;
     }
 
@@ -28,7 +29,7 @@
       background-color: unset;
 
       img {
-        width: 35px;
+        width: 2.2em;
       }
     }
   }
@@ -38,8 +39,8 @@
     justify-content: flex-start;
 
     img {
-      margin-right: 20px;
-      width: 35px;
+      margin-right: 2em;
+      width: 2.2em;
     }
   }
 
