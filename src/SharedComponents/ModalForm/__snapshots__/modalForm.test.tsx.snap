@@ -33,38 +33,13 @@ exports[`ModalForm should render correctly 1`] = `
     </ModalTitle>
   </ModalHeader>
   <ModalBody>
-    <Form
-      inline={false}
+    <Formik
+      initialValues={Object {}}
       onSubmit={[Function]}
+      validationSchema={Object {}}
     >
-      <FormGroup
-        controlId="formControl_name"
-        key="Ex: Armstrong"
-      >
-        <FormLabel
-          column={false}
-          srOnly={false}
-        >
-          Name
-        </FormLabel>
-        <FormControl
-          name="name"
-          onChange={[Function]}
-          placeholder="Ex: Armstrong"
-          type="text"
-        />
-      </FormGroup>
-      <Button
-        active={false}
-        className="btn-primary mt-3"
-        disabled={true}
-        type="submit"
-        variant="primary"
-      >
-        Create 
-        Family
-      </Button>
-    </Form>
+      <Component />
+    </Formik>
   </ModalBody>
 </Modal>
 `;

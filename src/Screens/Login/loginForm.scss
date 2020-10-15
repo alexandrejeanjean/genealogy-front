@@ -2,18 +2,6 @@
   margin: 0;
   background-color: #fff;
 
-  .error {
-    border: 0.2em solid #ff6565;
-  }
-
-  .error-message {
-    color: #ff6565;
-    padding: 0.5em 0.2em;
-    height: 1em;
-    font-size: 0.8em;
-    margin-bottom: 2em;
-  }
-
   .left {
     box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.12),
       0 0.1em 0.2em rgba(0, 0, 0, 0.24);
@@ -60,6 +48,8 @@
     background-color: #89c2d9;
     background: linear-gradient(259.07deg, #daf8ff 4.07%, #b2eaf8);
     .left {
+      height: 80%;
+      box-shadow: none;
       .left-desktop-title-wrapper {
         display: none;
       }
@@ -69,8 +59,9 @@
         width: 100%;
         margin: auto;
         text-align: center;
+
         .dna-logo {
-          width: 16em;
+          width: 10em;
           margin: auto;
           margin-bottom: 2em;
         }
@@ -92,11 +83,15 @@
     background: linear-gradient(259.07deg, #daf8ff 4.07%, #b2eaf8);
 
     .left {
+      height: 90%;
+
       .left-desktop-title-wrapper {
         display: none;
       }
       .left-mobile-title-wrapper {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
     }
 

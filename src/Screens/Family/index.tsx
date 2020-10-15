@@ -326,7 +326,7 @@ const Family = ({ location, setToastVisible }: any) => {
           {
             name: "position",
             placeholder: "Ex : 1",
-            inputType: "text",
+            inputType: "string",
           },
         ]}
         onHide={() => setModalGeneration(false)}
