@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
-import * as Yup from "yup";
+import { LoginSchema } from "../../schemas";
 import { tree } from "../../assets/imgPath";
 
 import "./loginForm.scss";
@@ -11,29 +11,6 @@ type TLoginForm = {
   isSignUp: boolean;
   setSignUpForm: Function;
 };
-
-interface ILoginState {
-  username: string;
-  password: string;
-}
-
-const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/;
-const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .email("*Must be a valid email address")
-    .max(100, "*Email must be less than 100 characters")
-    .matches(emailRegExp, "*Email is not valid")
-    .required("*Email is required"),
-  password: Yup.string()
-    .max(100, "*Password must contains at least 8 characters")
-    .matches(
-      passwordRegExp,
-      "*Password must contains at least 8 characters, 1 lowercase and 1 uppercase. "
-    )
-    .required("*Password is required"),
-});
 
 const LoginForm = ({ _handleSubmit, isSignUp, setSignUpForm }: TLoginForm) => {
   return (
@@ -54,7 +31,7 @@ const LoginForm = ({ _handleSubmit, isSignUp, setSignUpForm }: TLoginForm) => {
           </div>
           <Formik
             initialValues={{ username: "", password: "" }}
-            validationSchema={validationSchema}
+            validationSchema={LoginSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
               _handleSubmit(values);
@@ -103,6 +80,7 @@ const LoginForm = ({ _handleSubmit, isSignUp, setSignUpForm }: TLoginForm) => {
                     placeholder="Ex: min 8 characters"
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    value={values.password}
                     className={
                       touched.password && errors.password ? "has-error" : ""
                     }

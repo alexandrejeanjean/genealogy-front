@@ -57,6 +57,18 @@ h3,
   color: red;
 }
 
+.error {
+  border: 0.2em solid #ff6565;
+}
+
+.error-message {
+  color: #ff6565;
+  padding: 0.5em 0.2em;
+  height: 1em;
+  font-size: 0.8em;
+  margin-bottom: 2em;
+}
+
 button {
   border: none;
 }
