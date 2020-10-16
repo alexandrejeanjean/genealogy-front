@@ -48,7 +48,6 @@ const Dashboard = ({ setToastVisible }: TDashboard) => {
 
   // Add family  ---------------------------------------
   const createFamily = async (family: { name: string }) => {
-    console.log("HERRRE::", family);
     try {
       const response = await apiClient.post(`/families`, { name: family.name });
       if (response) getFamilies();
