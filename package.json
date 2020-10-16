@@ -12,7 +12,9 @@
     "@types/react-loader-spinner": "^3.1.0",
     "@types/yup": "^0.29.8",
     "axios": "^0.19.2",
+    "axios-mock-adapter": "^1.18.2",
     "bootstrap": "^4.4.1",
+    "cypress": "^5.4.0",
     "express": "^4.17.1",
     "formik": "^2.2.0",
     "heroku-ssl-redirect": "^0.1.1",
@@ -34,6 +36,7 @@
     "build": "react-scripts build",
     "start": "node server/server.js",
     "test": "yarn jest",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -78,7 +81,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-precommit-checks"
+      "pre-commit": "git-precommit-checks && yarn test"
     }
   },
   "git-precommit-checks": {
