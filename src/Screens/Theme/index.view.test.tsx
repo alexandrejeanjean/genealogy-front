@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Theme from "./index";
+import Theme from "./index.view";
 
 describe("Theme", () => {
   it("should render correctly", () => {

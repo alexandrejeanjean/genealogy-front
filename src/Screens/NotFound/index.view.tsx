@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Main from "../Theme/index";
+import Main from "../Theme/index.view";
 import { tree } from "../../assets/imgPath";
 import "./notFound.scss";
 

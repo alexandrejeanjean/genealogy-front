@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import Family from "./index";
+import Family from "./index.controller";
 
 const axios = require("axios");
 jest.mock("axios");

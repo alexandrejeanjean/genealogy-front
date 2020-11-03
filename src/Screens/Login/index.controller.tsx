@@ -6,8 +6,8 @@ import { withToast } from "../../store/ToastProvider";
 import { ErrorHandler } from "../../helpers";
 import LocalStorageService from "../../services/LocalStorageService";
 
-import LoginForm from "./LoginForm";
-import Main from "../Theme/index";
+import LoginForm from "./LoginForm.view";
+import Main from "../Theme/index.view";
 
 type TLogin = {
   setIsLogged: Function;

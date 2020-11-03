@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dashboard should render correctly 1`] = `
+exports[`Families should render correctly 1`] = `
 <ContextConsumer>
   <Component />
 </ContextConsumer>

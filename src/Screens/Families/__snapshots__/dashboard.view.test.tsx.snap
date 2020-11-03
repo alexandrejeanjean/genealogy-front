@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardView should render correctly 1`] = `
+<Fragment>
+  <section>
+    <ListWrapper
+      datas={
+        Array [
+          Object {
+            "id": 0,
+            "name": "FamilyTest",
+          },
+        ]
+      }
+      getAvatar={[Function]}
+      handleClick={[Function]}
+      handleDelete={[Function]}
+    >
+      <CreateItemBtn
+        handleClick={[Function]}
+      />
+    </ListWrapper>
+  </section>
+  <ModalForm
+    inputs={
+      Array [
+        Object {
+          "inputType": "text",
+          "name": "name",
+          "placeholder": "Ex: Armstrong",
+        },
+      ]
+    }
+    onHide={[Function]}
+    show={false}
+    submit={[MockFunction]}
+    title="Family"
+  />
+</Fragment>
+`;

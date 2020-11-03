@@ -4,10 +4,12 @@ import { withUser } from "../store/UserProvider";
 
 import LoadingLazyPage from "../SharedComponents/Loading/LoadingLazyPage";
 
-const Login = React.lazy(() => import("../Screens/Login"));
-const Family = React.lazy(() => import("../Screens/Family"));
-const Dashboard = React.lazy(() => import("../Screens/Dashboard"));
-const PageNotFound = React.lazy(() => import("../Screens/NotFound"));
+const Login = React.lazy(() => import("../Screens/Login/index.controller"));
+const Family = React.lazy(() => import("../Screens/Family/index.controller"));
+const Dashboard = React.lazy(() =>
+  import("../Screens/Families/index.controller")
+);
+const PageNotFound = React.lazy(() => import("../Screens/NotFound/index.view"));
 
 type PRoutesProps = {
   exact: boolean;

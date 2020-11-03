@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generation should render correctly 1`] = `
+<Fragment>
+  <ModalForm
+    inputs={
+      Array [
+        Object {
+          "inputType": "text",
+          "name": "firstname",
+          "placeholder": "Ex: Luis",
+        },
+        Object {
+          "inputType": "text",
+          "name": "lastname",
+          "placeholder": "Ex: Armstrong",
+        },
+        Object {
+          "datas": Array [
+            Object {
+              "id": 0,
+              "role": "father",
+            },
+          ],
+          "inputType": "select",
+          "name": "role",
+          "placeholder": "Ex: Grand-father",
+        },
+      ]
+    }
+    onHide={[Function]}
+    show={false}
+    submit={[MockFunction]}
+    title="Person"
+  />
+  <Container
+    fluid={true}
+    key="1"
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        className="generations-wrapper"
+      >
+        <Row
+          noGutters={false}
+        >
+          <Col
+            className="generation-head"
+          >
+            <p>
+              Génération : 
+              1
+            </p>
+            <button
+              className="delete-btn"
+              onClick={[Function]}
+            >
+              <img
+                alt="delete button"
+                src={[Function]}
+              />
+            </button>
+          </Col>
+        </Row>
+        <ListWrapper
+          datas={
+            Array [
+              Object {
+                "familyId": 1,
+                "firstname": "Dark",
+                "generationId": 1,
+                "id": 0,
+                "lastname": "Vador",
+              },
+            ]
+          }
+          getAvatar={[Function]}
+          getSubText={[Function]}
+          handleClick={[Function]}
+          handleDelete={[Function]}
+        >
+          <CreateItemBtn
+            handleClick={[Function]}
+          />
+        </ListWrapper>
+      </Col>
+    </Row>
+  </Container>
+</Fragment>
+`;

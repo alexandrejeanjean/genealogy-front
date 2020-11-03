@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import LoginForm from "./LoginForm";
+import LoginForm from "./LoginForm.view";
 
 const LoginFormProps = {
   _handleSubmit: jest.fn(),
